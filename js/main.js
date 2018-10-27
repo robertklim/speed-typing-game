@@ -40,10 +40,23 @@ const words = [
 function init() {
     // Load a word from array
     showWord(words);
+    // Countdown
+    setInterval(countdown, 1000);
+
 }
 
 // Pick and show random word
 function showWord(words) {
     const randIndex = Math.floor(Math.random() * words.length);
     currentWord.innerHTML = words[randIndex];
+}
+
+// Countdown
+function countdown() {
+    if (time > 0) {
+        time--;
+    } else if (time === 0) {
+        isPlaying = false;
+    }
+    timeDisplay.innerHTML = time;
 }
