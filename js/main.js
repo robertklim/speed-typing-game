@@ -42,7 +42,8 @@ function init() {
     showWord(words);
     // Countdown
     setInterval(countdown, 1000);
-
+    // check game status
+    setInterval(checkStatus, 100);
 }
 
 // Pick and show random word
@@ -59,4 +60,11 @@ function countdown() {
         isPlaying = false;
     }
     timeDisplay.innerHTML = time;
+}
+
+// Check game status
+function checkStatus() {
+    if (!isPlaying && time === 0) {
+        message.innerHTML = 'Game Over!';
+    }
 }
