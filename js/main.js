@@ -1,7 +1,18 @@
 document.addEventListener('DOMContentLoaded', init);
 
 // Global variables
-let time = 5;
+
+// Levels
+const levels = {
+    easy: 5,
+    medium: 3,
+    hard: 2,
+}
+
+// Current level
+const currentLevel = levels.medium;
+
+let time = currentLevel;
 let score = 0;
 let isPlaying;
 
@@ -11,7 +22,7 @@ const currentWord = document.querySelector('#current-word');
 const scoreDisplay = document.querySelector('#score');
 const timeDisplay = document.querySelector('#time');
 const message = document.querySelector('#message');
-const seconds = document.querySelector('#senonds');
+const seconds = document.querySelector('#seconds');
 
 const words = [
     'promise',
@@ -38,6 +49,8 @@ const words = [
 
 // Init
 function init() {
+    // Show level time
+    seconds.innerHTML = currentLevel;
     // Load a word from array
     showWord(words);
     // Match on word input
@@ -52,7 +65,7 @@ function init() {
 function startMatch() {
     if (matchWords()) {
         isPlaying = true;
-        time = 6;
+        time = currentLevel + 1;
         showWord(words);
         wordInput.value = '';
         score++;
